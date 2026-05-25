@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Not Found - お探しのページは見つかりませんでした</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: radial-gradient(circle at center, #1a2238 0%, #0d111d 100%);
+            color: #f4edd2;
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                vertical-gradient,
+                radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+                radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px);
+            background-size: 550px 550px, 350px 350px, 250px 250px;
+            background-position: 0 0, 40px 60px, 130px 270px;
+            opacity: 0.2;
+            animation: starFlicker 8s infinite alternate;
+        }
+        .container {
+            text-align: center;
+            max-width: 600px;
+            padding: 40px 20px;
+            z-index: 10;
+            position: relative;
+        }
+        .light-orb {
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(255,183,77,1) 0%, rgba(255,143,0,0.5) 40%, rgba(255,111,0,0) 70%);
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            filter: blur(4px);
+            animation: pulseLight 4s infinite ease-in-out;
+            position: relative;
+        }
+
+        .light-orb::after {
+            content: '404';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            font-weight: bold;
+            color: #1a2238;
+            letter-spacing: 2px;
+            opacity: 0.8;
+        }
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            color: #ffe082;
+            text-shadow: 0 0 15px rgba(255, 224, 130, 0.4);
+            letter-spacing: 0.05em;
+            line-height: 1.5;
+        }
+
+        p {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: #e0d7be;
+            margin-bottom: 40px;
+            letter-spacing: 0.03em;
+        }
+        .btn-home {
+            display: inline-block;
+            padding: 14px 35px;
+            background: linear-gradient(135deg, #ffb347 0%, #ffcc33 100%);
+            color: #2c1d00;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 15px rgba(255, 179, 71, 0.3);
+            transition: all 0.3s ease;
+            letter-spacing: 0.05em;
+        }
+
+        .btn-home:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(255, 179, 71, 0.5), 0 0 10px rgba(255, 255, 255, 0.2);
+            background: linear-gradient(135deg, #ffbc5e 0%, #ffd447 100%);
+        }
+        @keyframes pulseLight {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.8;
+                filter: blur(4px);
+            }
+            50% {
+                transform: scale(1.12);
+                opacity: 1;
+                filter: blur(2px);
+                box-shadow: 0 0 30px rgba(255, 143, 0, 0.3);
+            }
+        }
+
+        @keyframes starFlicker {
+            0%, 100% { opacity: 0.15; }
+            50% { opacity: 0.35; }
+        }
+        @media (max-width: 480px) {
+            h1 { font-size: 1.4rem; }
+            p { font-size: 0.88rem; }
+            .btn-home { padding: 12px 28px; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="light-orb"></div>
+        
+        <h1>お探しのページは<br>見つかりませんでした。</h1>
+        
+        <p>
+            私達の対応が間に合っていないようで、申し訳ありません。<br>
+            あるいは、少しだけ道に迷ってしまったのかもしれませんね。<br>
+            下のボタンから、いつでもあたたかい場所へ戻ることができます。
+        </p>
+        
+        <a href="https://masaru-star.github.io/Portfolio.github.io/" class="btn-home">トップページへ戻る</a>
+    </div>
+
+</body>
+</html>
