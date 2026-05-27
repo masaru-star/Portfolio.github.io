@@ -38,6 +38,7 @@
             <h2>About Me</h2>
             <p>はじめまして！私はごく普通の学生、えむです。</p>
             <ul>
+            <li><b>別名義：</b>真優, まさる, Ohka.M,</li>
             <li><b>最近：</b>家庭の事情により活動量減少</li>
             <li><b>目標：</b>信頼を得ること…ですね？</li>
             </ul>
@@ -45,9 +46,9 @@
         <section id="hobbies">
             <h2>Hobbies</h2>
             <ul>
-                <li><b>プログラミング：</b> 最近はC++やPythonを勉強中です。</li>
+                <li><b>プログラミング：</b> そろそろフレームワークを使いたい所存。</li>
                 <li><b>音楽：</b> 特にボーカロイド曲と呼ばれるもの。</li>
-                <li><b>外国語学習：</b> 英,独,韓,中,露…　別に話せるわけではない。</li>
+                <li><b>外国語学習：</b> 英,独,韓,中,露…　別に読めるわけではない。</li>
             </ul>
         </section>
         <section id="works">
@@ -80,7 +81,7 @@
     </div>
     <footer><b>
         <p>&copy; 2025-2026 Ohka_M.　<small>All Rights Reserved.</small></p>
-        <p></br>今日もお疲れ様です。少しでも貴方の癒しになれば幸いです。</br>～ ～ ～　<span id="counter-container"></span>　～ ～ ～</p>
+        <p></br>今日もお疲れ様です。少しでも貴方の癒しになれば幸いです。</br>～ ～ ～　<span id="counter-container"></span>　～ ～ ～</br><small>※上記カウンターはあなたの訪問回数です。</small></p>
     </b></footer>
 <script>
     let visitCount = localStorage.getItem('visit_count') || 0;
@@ -128,26 +129,45 @@ tagFilter.addEventListener('change', function() {
 
 
 const textElement = document.getElementById('typing-text');
-const phrase = "ここは私のホームページです。";
+const phrases = [
+    "ここは私のホームページです。",
+    "ポートフォリオへようこそ！",
+    "YouTubeチャンネル「@teriarus」を保有しています。",
+    "フォロー、或いはチャンネル登録をお忘れなく。",
+    "今日も仕事お疲れ様です。",
+    "おかえりなさい。また会えて嬉しいです。",
+    "いつでも最新のプロジェクトをご覧になれます。",
+    "『理想郷技研』でインディーゲーム開発を行っている者です。"
+];
+let currentPhrase = ""; // 現在タイピング中の文字列
 let charIndex = 0;
 let isDeleting = false;
 let typeSpeed = 150;
+function getRandomPhrase() {
+    const candidates = phrases.filter(p => p !== currentPhrase);
+    // 候補の中からランダムに選択（もし配列に1つしか要素がない場合はそれを返す）
+    const randomIndex = Math.floor(Math.random() * candidates.length);
+    return candidates.length > 0 ? candidates[randomIndex] : phrases[0];
+}
+// 最初のフレーズをセット
+currentPhrase = getRandomPhrase();
 function type() {
-    const currentText = phrase.substring(0, charIndex);
+    // phrase から currentPhrase に変更
+    const currentText = currentPhrase.substring(0, charIndex);
     textElement.textContent = currentText;
-
-    if (!isDeleting && charIndex < phrase.length) {
+    if (!isDeleting && charIndex < currentPhrase.length) {
         charIndex++;
         typeSpeed = 150; 
     } else if (isDeleting && charIndex > 0) {
         charIndex--;
         typeSpeed = 50;
-    } else if (!isDeleting && charIndex === phrase.length) {
+    } else if (!isDeleting && charIndex === currentPhrase.length) {
         isDeleting = true;
-        typeSpeed = 2000;
+        typeSpeed = 2000; // 出し切った後の待機時間
     } else if (isDeleting && charIndex === 0) {
         isDeleting = false;
-        typeSpeed = 500;
+        currentPhrase = getRandomPhrase();
+        typeSpeed = 500; // 消えきった後の待機時間
     }
     setTimeout(type, typeSpeed);
 }
